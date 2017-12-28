@@ -1,5 +1,5 @@
 import csv
-import pprint
+import json
 
 #turns the csv into a list of lists [[x, y, z,], [a, b, c]
 exampleFile = open('input.csv')
@@ -75,4 +75,8 @@ for row in cleanData:
     #adds the now completed subDict to jsonList
     jsonList.append(subDict)
 
-pprint.pprint(jsonList)
+
+print(json.dumps(jsonList))
+
+with open('output.txt', 'w') as outfile:
+    json.dump(jsonList, outfile)
