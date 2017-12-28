@@ -48,6 +48,8 @@ for row in exampleData:
     subList.append(row[14])
     #website_en
     subList.append(row[15])
+    #website_ch
+    subList.append(row[16])
 
 
     #once that list for the entry is created, it is added to cleanData
@@ -70,7 +72,7 @@ for row in cleanData:
 
     subDict['type'] = 'Feature'
 
-    subDict['properties'] = {'orgname_en': row[1], 'orgname_ch': row[2], 'psu_en': row[3], 'originloc': row[4], 'sector': row[5], 'regloc': row[6], 'regdate': row[7], 'actarea': row[8], 'website_en': row[9]}
+    subDict['properties'] = {'orgname_en': row[1], 'orgname_ch': row[2], 'psu_en': row[3], 'originloc': row[4], 'sector': row[5], 'regloc': row[6], 'regdate': row[7], 'actarea': row[8], 'website_en': row[9], 'website_ch': row[10]}
 
     #adds the now completed subDict to jsonList
     jsonList.append(subDict)
