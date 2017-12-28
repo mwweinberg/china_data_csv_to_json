@@ -55,14 +55,10 @@ for row in exampleData:
     #once that list for the entry is created, it is added to cleanData
     cleanData.append(subList)
 
-#print(cleanData)
-#print(cleanData[1])
 
 #list to hold the list of dictionaries
 jsonList = []
 
-
-#print(cleanData[0])
 
 for row in cleanData:
     #this is the dict for the entry
@@ -72,13 +68,18 @@ for row in cleanData:
 
     subDict['type'] = 'Feature'
 
-    subDict['properties'] = {'orgname_en': row[1], 'orgname_ch': row[2], 'psu_en': row[3], 'originloc': row[4], 'sector': row[5], 'regloc': row[6], 'regdate': row[7], 'actarea': row[8], 'website_en': row[9], 'website_ch': row[10]}
+    #this section only adds websites if they exist to the properties entry
+    propertiesSubDict = {'orgname_en': row[1], 'orgname_ch': row[2], 'psu_en': row[3], 'originloc': row[4], 'sector': row[5], 'regloc': row[6], 'regdate': row[7], 'actarea': row[8]}
+
+    if '.' in row[9]:
+        propertiesSubDict['website_en'] = row[9]
+    if '.' in row[10]:
+        propertiesSubDict['website_ch'] = row[10]
+
+    subDict['properties'] = propertiesSubDict
 
     #adds the now completed subDict to jsonList
     jsonList.append(subDict)
-
-
-print(json.dumps(jsonList))
 
 with open('output.txt', 'w') as outfile:
     json.dump(jsonList, outfile)
