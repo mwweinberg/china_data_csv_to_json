@@ -1,6 +1,8 @@
 import csv
 import json
 
+import time
+
 #turns the csv into a list of lists [[x, y, z,], [a, b, c]
 exampleFile = open('repoffinput.csv')
 exampleReader = csv.reader(exampleFile)
@@ -59,7 +61,7 @@ for row in exampleData:
 #list to hold the list of dictionaries
 jsonList = []
 
-
+#creates the json
 for row in cleanData:
     #this is the dict for the entry
     subDict = {}
@@ -81,5 +83,41 @@ for row in cleanData:
     #adds the now completed subDict to jsonList
     jsonList.append(subDict)
 
-with open('output.txt', 'w') as outfile:
+#writes the json
+with open('jsonholder.json', 'w') as outfile:
     json.dump(jsonList, outfile)
+
+
+#This is the first part of the input html page
+top_half = open('map_top.html', 'r')
+#This re-inports the  json as a text file because . . . that's how it works
+middle = open('jsonholder.json', 'r')
+#This is the last part of the input html page
+bottom_half = open('map_bottom.html', 'r')
+
+#sets up the regular output
+output_page = open('index_RO_table.html', 'w')
+##sets up the archive output
+timestamp = time.strftime("%Y%m%d")
+output_page_archive_filename = "index_RO_table" + timestamp + ".html"
+archive_page = open(output_page_archive_filename, 'w')
+
+
+#writes the html to the new page
+for item in top_half:
+    output_page.write(item)
+    archive_page.write(item)
+#writes the json
+for item in middle:
+    output_page.write(item)
+    archive_page.write(item)
+#writes the end
+for item in bottom_half:
+    output_page.write(item)
+    archive_page.write(item)
+
+top_half.close()
+middle.close()
+bottom_half.close()
+output_page.close()
+archive_page.close()
