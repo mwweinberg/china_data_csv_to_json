@@ -2,7 +2,7 @@ import csv
 import json
 
 #turns the csv into a list of lists [[x, y, z,], [a, b, c]
-exampleFile = open('input.csv')
+exampleFile = open('repoffinput.csv')
 exampleReader = csv.reader(exampleFile)
 exampleData = list(exampleReader)
 
