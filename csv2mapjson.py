@@ -96,10 +96,10 @@ middle = open('jsonholder.json', 'r')
 bottom_half = open('map_bottom.html', 'r')
 
 #sets up the regular output
-output_page = open('index_RO_table.html', 'w')
+output_page = open('index_map.html', 'w')
 ##sets up the archive output
 timestamp = time.strftime("%Y%m%d")
-output_page_archive_filename = "index_RO_table" + timestamp + ".html"
+output_page_archive_filename = "index_map" + timestamp + ".html"
 archive_page = open(output_page_archive_filename, 'w')
 
 
